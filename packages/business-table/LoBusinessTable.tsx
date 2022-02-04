@@ -1,24 +1,16 @@
 import {
-  InputSearch, IonIcon, LoButton, LoDataTable
+  ActionMenu, InputSearch, IonIcon, LoButton, LoDataTable
 } from '@lolab/components';
-import { ButtonGroup } from 'reactstrap';
+import {
+  ButtonGroup, DropdownItem, DropdownMenu
+} from 'reactstrap';
 import { useUserBusiness } from '@lolab/database/useUserBusiness';
 import { useUserData } from '@lolab/database';
-
+import tableColumns from './coulmns';
+import { CreateNewBusiness } from '@lolab/business-table/CreateNewBusiness';
+import { useState } from 'react';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface LoCrmProps {}
-const columns = [
-  {
-    name: 'Title',
-    selector: (row) => row.title,
-    sortable: true
-  },
-  {
-    name: 'Year',
-    selector: (row) => row.year,
-    sortable: true
-  }
-];
 
 const data = [
   {
@@ -34,19 +26,78 @@ const data = [
 ];
 
 export const LoCrm = ({}: LoCrmProps): JSX.Element => {
+  const [
+    createNewModalopen,
+    setCreateNewModalopen
+  ] = useState<boolean>(false);
   const { userData } = useUserData();
   const {
     usersBusinessData, loadingUsersData
   } = useUserBusiness();
-  console.log('UserData', userData, '😂0-0-0-🌱', usersBusinessData);
+  console.log('UserData', userData, '😂🌱', usersBusinessData);
 
+  const columns = [
+    {
+      name: 'Title',
+      selector: (row) => row.title,
+      sortable: true
+    },
+    {
+      name: 'Year',
+      selector: (row) => row.year,
+      sortable: true
+    },
+    {
+      name: 'action',
+      // eslint-disable-next-line react/display-name
+      cell: () => {
+        return (
+          <ActionMenu
+            direction="right"
+            icon="ellipsis-vertical-outline"
+            actions={[
+              {
+                id: '1',
+                icon: 'duplicate-outline',
+                label: 'Duplicate'
+              },
+              {
+                id: '2',
+                icon: 'trash-outline',
+                label: 'Delete'
+              },
+              {
+                id: '3',
+                icon: 'download-outline',
+                label: 'Export in CSV'
+              }
+            ]}
+            context={undefined}
+          ></ActionMenu>
+        );
+      },
+
+      sortable: false
+    }
+  ];
+
+  const toggleVisible = () => {
+   
+    setCreateNewModalopen(!createNewModalopen);
+  };
   return (
     <>
       <div className="d-flex flex-wrap justify-content-between align-items-center ">
+        <CreateNewBusiness
+          isOpen={createNewModalopen}
+          toggle={toggleVisible}
+        />
         <div className="d-flex align-items-center">
           <LoButton
+            onClick={toggleVisible}
             icon="add-outline"
             size="sm"
+            className="mr-4"
           />
           <InputSearch
             name="Search"
