@@ -5,7 +5,7 @@ import {
 import { useMemo } from 'react';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 
-type UserData = unknown; // TODO: FIXME: replate with proper interface (see code below)
+type UserData = unknown; // TODO: FIXME: replace with proper interface (see code below)
 // interface UserData extends DBDocument { // TODO: FIXME: once in use, move this interface into 'packages/database/models/ts'
 //
 //   account: ...;
@@ -40,7 +40,7 @@ export const useUserData = (): {
     error
   ] = useDocumentData<UserData>(dbRef);
 
-  console.group('useUserData');
+  console.group('useUserData🥶');
   console.log('userData', userData);
   console.log('loading', loading);
   console.log('error', error);
