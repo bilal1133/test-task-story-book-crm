@@ -4,13 +4,13 @@ import {
 } from '@lolab/database';
 
 import { useDocumentData } from 'react-firebase-hooks/firestore';
-interface UseUserHookProps {
+interface UseUserBusinessHookProps {
   debug?: {
     caller: string;
   };
 }
 
-interface UseUserHookReturn {
+interface UseUserBusinessHookReturn {
   usersBusinessData: DBUser | unknown;
   loadingUsersData: boolean;
   errorUsersData: firebase.default.auth.Error | undefined;
@@ -18,7 +18,7 @@ interface UseUserHookReturn {
 
 type UsersData = unknown;
 
-export const useUsers = ({ debug }: UseUserHookProps = {}): UseUserHookReturn => {
+export const useUserBusiness = ({ debug }: UseUserBusinessHookProps = {}): UseUserBusinessHookReturn => {
   const { user } = useUser({ debug: { caller: 'useUserData' } });
 
   const dbRef = useMemo(() => (user ? firestoreRef().doc(getPathForUserBusiness(user.uid)) : null), [

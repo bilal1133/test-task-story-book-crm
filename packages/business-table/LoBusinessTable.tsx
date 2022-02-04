@@ -9,7 +9,7 @@ import { useUserData } from '@lolab/database';
 import {
   ButtonGroup, CardBody, CardFooter, Col, Container, Modal, Row
 } from 'reactstrap';
-import { useUsers } from '@lolab/database/useUsers';
+import { useUserBusiness } from '@lolab/database/useUserBusiness';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface LoCrmProps {}
@@ -43,8 +43,8 @@ export const LoCrm = ({}: LoCrmProps): JSX.Element => {
   const {
     userData, loadingUserData, errorUserData
   } = useUserData();
-  const { usersBusinessData } = useUsers();
-  console.log('😂0-0-0-🌱', userData);
+  const { usersBusinessData } = useUserBusiness();
+  console.log('😂0-0-0-🌱', usersBusinessData);
   return (
     <>
       <div className="d-flex flex-wrap justify-content-between align-items-center ">
