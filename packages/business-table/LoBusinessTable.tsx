@@ -1,15 +1,9 @@
 import {
-  useState, useEffect
-} from 'react';
-import { delay } from '@app/helpers';
-import {
   InputSearch, IonIcon, LoButton, LoDataTable
 } from '@lolab/components';
-import { useUserData } from '@lolab/database';
-import {
-  ButtonGroup, CardBody, CardFooter, Col, Container, Modal, Row
-} from 'reactstrap';
+import { ButtonGroup } from 'reactstrap';
 import { useUserBusiness } from '@lolab/database/useUserBusiness';
+import { useUserData } from '@lolab/database';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface LoCrmProps {}
@@ -34,17 +28,18 @@ const data = [
   },
   {
     id: 2,
-    title: 'Ghostbusters',
+    title: 'Ghostwriters',
     year: '1984'
   }
 ];
 
 export const LoCrm = ({}: LoCrmProps): JSX.Element => {
+  const { userData } = useUserData();
   const {
-    userData, loadingUserData, errorUserData
-  } = useUserData();
-  const { usersBusinessData } = useUserBusiness();
-  console.log('😂0-0-0-🌱', usersBusinessData);
+    usersBusinessData, loadingUsersData
+  } = useUserBusiness();
+  console.log('UserData', userData, '😂0-0-0-🌱', usersBusinessData);
+
   return (
     <>
       <div className="d-flex flex-wrap justify-content-between align-items-center ">

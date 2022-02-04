@@ -12,8 +12,8 @@ interface UseUserBusinessHookProps {
 
 interface UseUserBusinessHookReturn {
   usersBusinessData: DBUser | unknown;
-  loadingUsersData: boolean;
-  errorUsersData: firebase.default.auth.Error | undefined;
+  loadingUsersBusiness: boolean;
+  errorUsersBusiness: firebase.default.auth.Error | undefined;
 }
 
 type UsersData = unknown;
@@ -25,8 +25,6 @@ export const useUserBusiness = ({ debug }: UseUserBusinessHookProps = {}): UseUs
     user
   ]);
 
-  console.log('DBREF❗️❗️', dbRef);
-
   const [
     usersBusinessData,
     loading,
@@ -35,7 +33,7 @@ export const useUserBusiness = ({ debug }: UseUserBusinessHookProps = {}): UseUs
 
   console.group('useUserBusinessData');
   console.log('❗️', debug);
-  console.log('userData', usersBusinessData);
+  console.log('usersBusinessData', usersBusinessData);
   console.log('loading', loading);
   console.log('error', error);
   console.groupEnd();
@@ -43,8 +41,8 @@ export const useUserBusiness = ({ debug }: UseUserBusinessHookProps = {}): UseUs
   const _return = useMemo(
     () => ({
       usersBusinessData,
-      loadingUsersData: loading,
-      errorUsersData: error
+      loadingUsersBusiness: loading,
+      errorUsersBusiness: error
     }),
     [
       error,
@@ -52,5 +50,6 @@ export const useUserBusiness = ({ debug }: UseUserBusinessHookProps = {}): UseUs
       usersBusinessData
     ]
   );
+
   return _return;
 };

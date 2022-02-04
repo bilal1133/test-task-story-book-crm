@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@lolab/crm",
+  "name": "@lolab/table",
   "version": "0.0.1",
   "license": "UNLICENSED",
   "author": "Lolab Team <hello@lolab.io>",

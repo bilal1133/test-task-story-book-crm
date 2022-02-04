@@ -17,6 +17,7 @@
     "source.fixAll.eslint": true,
     "source.fixAll.format": true
   },
+  "eslint.alwaysShowStatus": true, 
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "editor.tabSize": 2,
   "[typescriptreact]": {
@@ -37,4 +38,7 @@
     "editor.formatOnSave": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": [
+    "Beetlejuice"
+  ],
 }
