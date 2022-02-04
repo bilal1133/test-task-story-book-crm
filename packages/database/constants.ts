@@ -1,0 +1,1 @@
+export const PLACEHOLDER_STORYBOOK = 'STORYBOOK';

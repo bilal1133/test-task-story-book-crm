@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "name": "@lolab/crm",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "author": "Lolab Team <hello@lolab.io>",
+  "main": "index.ts",
+  "sideEffects": false
+}

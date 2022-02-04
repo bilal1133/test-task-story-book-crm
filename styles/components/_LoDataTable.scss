@@ -1,0 +1,10 @@
+// TABLE
+.rdt_TableHeader {
+  display: none !important;
+}
+.rdt_TableCol_Sortable span {
+  margin-left: $spacer * 0.5;
+}
+.rdt_TableCell {
+  flex-wrap: wrap;
+}

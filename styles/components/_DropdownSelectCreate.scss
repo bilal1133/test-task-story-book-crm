@@ -1,0 +1,9 @@
+// DropdownSelectCreate
+.dropdown-select-create__selected__remove {
+  visibility: hidden;
+}
+.dropdown-select-create__selected:hover {
+  .dropdown-select-create__selected__remove {
+    visibility: visible;
+  }
+}

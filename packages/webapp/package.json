@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "name": "@lolab/webapp",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "author": "Lolab Team <hello@lolab.io>",
+  "sideEffects": false,
+  "browser": {
+    "html-pdf": false
+  },
+  "scripts": {
+    "install:clean": "rm -rf node_modules && yarn",
+    "dev": "next dev",
+    "dev:debugger": "NODE_OPTIONS=\"--inspect\" next dev",
+    "dev:https": "node server.js",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export",
+    "bundle-analyzer": "ANALYZE=true yarn build",
+    "TODO:storybook": "start-storybook -p 6006 -c .storybook",
+    "TODO:storybook:build": "build-storybook -c .storybook -o .out",
+    "TODO:test": "jest",
+    "TODO:test:ci": "jest --ci",
+    "TODO:test:watch": "jest --watch",
+    "run_from_this_folder:lint": "yarn run_from_this_folder:lint:scss && yarn run_from_this_folder:lint:ts && yarn run_from_this_folder:scss:.d.ts",
+    "run_from_this_folder:lint:ts": "eslint --config \"./../../.eslintrc.js\" --ignore-path \"./../../.eslintignore\" --fix \"./**/*.{js,ts,tsx}\"",
+    "run_from_this_folder:lint:scss": "prettier --config \"./../../.prettierrc.js\" --ignore-path \"./../../.prettierignore\" --write \"./src/**/*.scss\"",
+    "run_from_this_folder:scss:.d.ts": "tsm \"./src/{components,screens,sections}/**/*.scss\"",
+    "db:backup": "node ./utils/database-do-backup.js",
+    "db:restore": "node ./utils/database-do-restore.js",
+    "db:backfill-model": "node ./utils/database-do-backfill-model.js"
+  },
+  "dependencies": {
+    "@lolab/components": "*",
+    "next-transpile-modules": "8.0.0",
+    "next": "11.1.2",
+    "react-dom": "17.0.2",
+    "react": "17.0.2"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "11.1.2"
+  }
+}

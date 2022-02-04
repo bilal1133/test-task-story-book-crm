@@ -1,0 +1,37 @@
+input,
+textarea,
+select {
+  color: $default !important;
+  &::placeholder {
+    color: $secondary !important;
+  }
+  &:disabled,
+  &:read-only:not(select) {
+    cursor: not-allowed;
+  }
+}
+
+%input-no-border {
+  @extend .shadow-none;
+  border: none;
+  border-radius: 0;
+  border-color: $secondary;
+}
+
+input.no-border {
+  @extend %input-no-border;
+  &:active,
+  &:focus {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: $primary;
+  }
+}
+
+input.no-border__only-bottom {
+  @extend %input-no-border;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  padding-left: 0;
+  padding-right: 0;
+}

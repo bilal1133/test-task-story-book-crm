@@ -1,0 +1,37 @@
+.rdrPprevButton {
+  margin-right: 0;
+  margin-left: 20px;
+  background: none;
+  i {
+    border-color: transparent $default transparent transparent;
+  }
+}
+.rdrNextButton {
+  margin-left: 0;
+  margin-right: 20px;
+  background: none;
+  i {
+    border-color: transparent transparent transparent $default;
+  }
+}
+
+.rdrMonthAndYearPickers select {
+  @extend .text-xs;
+  color: $default !important;
+}
+
+.rdrWeekDay {
+  @extend .text-xs;
+  color: $default;
+  font-weight: 700;
+}
+
+.rdrDayNumber span {
+  @extend .text-xs;
+  color: $default;
+  font-weight: 400;
+}
+
+.rdrDayToday .rdrDayNumber span:after {
+  background: $default;
+}

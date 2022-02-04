@@ -1,0 +1,9 @@
+// GOOGLE DRIVE PICKER
+.picker-dialog {
+  min-height: 50vh !important;
+  &-title,
+  &-content,
+  &-frame {
+    min-height: 50vh !important;
+  }
+}

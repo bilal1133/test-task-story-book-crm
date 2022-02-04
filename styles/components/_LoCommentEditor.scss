@@ -1,0 +1,10 @@
+$LoCommentEditorActionsWidth: 150px;
+
+.lolab__comment-editor {
+  &__text-editor--width {
+    width: calc(100% - #{$LoCommentEditorActionsWidth});
+  }
+  &__actions--width {
+    width: $LoCommentEditorActionsWidth;
+  }
+}

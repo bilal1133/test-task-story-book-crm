@@ -1,0 +1,90 @@
+/**
+* To import variables into '*.module.scss' files,
+* do NOT import this file.
+*
+* Import 'setup' instead.
+*/
+
+// COLORS / COLOURS
+// BEWARE: keep in sync with 'ColoursHex' enum
+$blue: #544cf9;
+$indigo: #733aef; // primary violet
+$purple: #8053f6; // secondary violet
+$pink: #fc9f9d;
+$red: #fc2d65;
+$orange: #ff7f24;
+$yellow: #ffeb2e;
+$green: #1fdd94;
+$teal: #00bbc0;
+$cyan: #c2ff75; // the color per se is lime, but we didnt' changed the variable name to not mess up all the styles
+$white: #fff;
+
+// primary, secondary, tertiary, quatertiary, quinary, senary, septenary, octonary, nonary, and denary
+$default: #252525;
+$primary: #636363;
+$secondary: #afafaf;
+$tertiary: #efefef; // super light
+
+$gray-300: $secondary;
+$gray-600: $secondary; // Line footer color
+$gray-700: $primary; // Line p color
+$gray-800: $default; // Line heading color
+
+// SHADOWS (overrides Argon: only the color changes, the rest stays the same)
+$box-shadow-sm: 0 0 0.5rem rgba($primary, 0.075);
+$box-shadow: 0 0 2rem 0 rgba($primary, 0.15);
+$box-shadow-lg: 0 0 3rem rgba($primary, 0.175);
+
+// FONTS
+// https://www.digitalocean.com/community/tutorials/css-system-font-stack
+$font-family-sans-serif: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+// src/_DO_NOT_EDIT_Argon_theme_assets/scss/custom/_variables.scss
+// $font-weight-light:           300 !default; // Argon default (overrides Bootstrap)
+// $font-weight-normal:          400 !default; // Argon default (overrides Bootstrap)
+$font-weight-semibold: 500; // custom edit (new value, no entries in argon nor bootsrtap to override)
+// $font-weight-bold:            600 !default; // Argon default (overrides Bootstrap)
+// $font-weight-extra-bold:      700 !default; // Argon default (overrides Bootstrap)
+
+// HEADINGS
+$headings-font-weight: 400;
+$display-line-height: 'ignore-me' !important; // BEWARE: we are invalidating this variable so that display-* classes only change font weight and size
+
+// LINKS
+$link-color: $default;
+
+// BODY
+$body-bg: $white;
+$body-color: $default;
+
+// BUTTONS
+// $btn-font-size: 0.875rem;
+$btn-font-weight: 400;
+
+// INPUTS
+// $input-btn-font-size-sm: 0.875rem;
+// $input-btn-font-size: 1rem;
+// $input-btn-font-size-lg: 1rem;
+
+// NAVBAR
+$nav-link-color: $default;
+$navbar-dark-color: rgba($default, 0.5);
+$navbar-dark-hover-color: rgba($default, 0.75);
+$navbar-dark-active-color: $default;
+$navbar-dark-disabled-color: rgba($default, 0.25);
+$navbar-dark-toggler-border-color: transparent;
+
+// FORMS
+$input-placeholder-color: $secondary;
+$input-border-color: $secondary;
+$form-feedback-invalid-color: $red;
+$input-disabled-bg: transparent;
+$custom-toggle-checked-bg: $default;
+
+// TEXT: P
+$paragraph-font-weight: 400;
+
+// DROPDOWN
+$dropdown-link-hover-bg: none;
+
+// TIMELINE
+$timeline-axis-width: 2px;

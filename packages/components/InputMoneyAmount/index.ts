@@ -1,0 +1,1 @@
+export { InputMoneyAmount } from './InputMoneyAmount';

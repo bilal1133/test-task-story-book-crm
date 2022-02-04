@@ -1,0 +1,189 @@
+// GLOBALS
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+  width: 100%;
+  // overflow: auto;
+}
+
+// TODO: disable bounce scroll only inside app, NOT INSIDE WEBSITE (or ONLY enable bounce scroll in the WEBSITE and disable everywhere else)
+// BEGIN: DISABLE BOUNCE SCROLL
+// html,
+// body {
+//   height: 100%;
+//   overflow: hidden;
+// }
+
+// #__next {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   overflow: auto;
+// }
+// END: DISABLE BOUNCE SCROLL
+
+ul {
+  margin-bottom: 0;
+}
+
+.bg-tertiary {
+  background-color: $tertiary !important;
+}
+
+.font-weight-semibold {
+  font-weight: $font-weight-semibold !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.cursor-move {
+  cursor: move !important;
+}
+
+.cursor-text {
+  cursor: text !important;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.is-disabled {
+  // @extend .pointer-events-none; // BEWARE: do NOT uncomment this or it will supersede the 'cursor' property, invalidating it
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.opacity-0 {
+  opacity: 0 !important;
+}
+
+.transition {
+  &--opacity {
+    transition: opacity 0.5s;
+  }
+}
+
+.z-index-9999 {
+  z-index: 9999 !important;
+}
+
+.h-min-100 {
+  min-height: 100% !important;
+}
+
+.h-max-100 {
+  max-height: 100% !important;
+}
+
+.w-min-100 {
+  min-width: 100% !important;
+}
+
+.w-max-100 {
+  max-width: 100% !important;
+}
+
+.on-hover--move-up:hover {
+  transform: translateY($btn-hover-translate-y);
+}
+
+.on-hover--font-weight-bold:hover {
+  font-weight: $font-weight-bold;
+}
+
+.on-hover--show-thingy {
+  .thingy-hidden {
+    display: none;
+  }
+  &:hover .thingy-hidden {
+    display: block;
+  }
+}
+
+.position-absolute {
+  // X
+  &.left {
+    left: 0;
+  }
+  &.center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &.right {
+    right: 0;
+  }
+  // Y
+  &.top {
+    top: 0;
+  }
+  &.middle {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &.bottm {
+    bottom: 0;
+  }
+}
+
+.white-space--pre-line {
+  white-space: pre-line;
+}
+
+// BEGIN: MODIFIERS
+
+.last-child--mb-0 :last-child {
+  @extend .mb-0;
+}
+.last-child--mb-1 :last-child {
+  @extend .mb-1;
+}
+.last-child--mb-2 :last-child {
+  @extend .mb-2;
+}
+.last-child--mb-3 :last-child {
+  @extend .mb-3;
+}
+.last-child--mb-4 :last-child {
+  @extend .mb-4;
+}
+.last-child--mb-5 :last-child {
+  @extend .mb-5;
+}
+.last-child--mb-6 :last-child {
+  @extend .mb-6;
+}
+.last-child--mb-7 :last-child {
+  @extend .mb-7;
+}
+.last-child--mb-8 :last-child {
+  @extend .mb-8;
+}
+.last-child--mb-9 :last-child {
+  @extend .mb-9;
+}
+
+// END: MODIFIERS

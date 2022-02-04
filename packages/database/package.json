@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@lolab/database",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "author": "Lolab Team <hello@lolab.io>",
+  "main": "index.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@sendgrid/mail": "7.4.2",
+    "firebase-admin": "9.12.0",
+    "firebase": "8.10.0"
+  }
+}

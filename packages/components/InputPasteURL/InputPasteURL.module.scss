@@ -1,0 +1,7 @@
+@import '../../../styles/setup/setup';
+
+.inputPasteUrl {
+  &::placeholder {
+    color: $secondary !important;
+  }
+}

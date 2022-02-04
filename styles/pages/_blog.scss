@@ -1,0 +1,122 @@
+.blog {
+  &__menu-filter {
+    background-color: $tertiary;
+  }
+
+  &__card-preview {
+    height: 100%;
+    @extend .cursor-pointer;
+
+    &.layout-horizontal {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+    }
+    &__image {
+      @extend .card-img-top; // we are in a card: rount top corners only
+      height: 250px;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      .layout-horizontal & {
+        // ^^^^ BEWARE: compiles to: .layout-horizontal .blog__card-preview__image {
+        @extend .card-img;
+        height: unset;
+        flex-shrink: 1;
+      }
+    }
+    &__category {
+      color: $secondary;
+      font-size: $font-size-xs;
+      text-transform: uppercase;
+      font-weight: $font-weight-bold;
+      letter-spacing: 1px;
+      &__link {
+        color: $secondary;
+      }
+    }
+    &__title {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+      min-height: 4.5rem;
+      @include ellipsis(2);
+    }
+    &__excerpt * {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__footer__form {
+    background-color: $tertiary;
+  }
+
+  &__footer__word-circle-orange {
+    white-space: nowrap;
+    position: relative;
+    &::after {
+      content: ''; // ::before and ::after both require content
+      background-image: url('/img/word-circle-orange.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      width: 105px;
+      height: 120px;
+      top: -20px;
+      left: -5px;
+    }
+  }
+
+  &__article-content {
+    h2 {
+      margin-top: $spacer * 2.5;
+    }
+    h3 {
+      margin-top: $spacer * 2;
+    }
+    figure {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      img {
+        @extend .img-fluid;
+      }
+    }
+    a,
+    a:active,
+    a:visited {
+      text-decoration: underline;
+      color: $blue;
+      font-weight: $font-weight-bold;
+    }
+    .wp-block-media-text.alignwide.is-stacked-on-mobile {
+      // ^^^^ BEWARE: this classes are the ones applied to #author-section
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+      figure {
+        min-width: 250px;
+        max-width: 250px;
+        margin-right: $spacer * 2;
+      }
+      .wp-block-media-text__content {
+        h2,
+        h3 {
+          margin-top: unset;
+        }
+      }
+      @include media-breakpoint-up(md) {
+        flex-direction: row;
+        figure {
+          min-width: 350px;
+          max-width: 350px;
+        }
+        .wp-block-media-text__content {
+          align-self: center;
+        }
+      }
+    }
+  }
+}

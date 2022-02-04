@@ -1,0 +1,6 @@
+@import '../../../styles/setup/setup';
+
+.inputSearchIcon:focus {
+  border: 1px dashed $primary;
+  // border-radius: $border-radius; // TODO: make this based on size sm/default/lg
+}

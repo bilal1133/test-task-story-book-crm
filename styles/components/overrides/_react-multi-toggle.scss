@@ -1,0 +1,27 @@
+.toggle-wrapper {
+  margin: 0;
+  padding: 0;
+
+  .toggleContainer {
+    border-color: $secondary;
+    border-radius: 12.5px;
+  }
+
+  .toggleOption {
+    @extend .text-xs;
+    @extend .text-nowrap;
+    border-color: $secondary;
+    color: $secondary;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 15px;
+    border-radius: 12.5px;
+  }
+
+  .toggle {
+    background-color: $default;
+    border-color: $secondary;
+    border-radius: 12.5px;
+    padding: 0 15px;
+  }
+}

@@ -1,0 +1,73 @@
+// QUILL
+
+.quill.ql-disabled * {
+  cursor: not-allowed;
+}
+
+.ql-container {
+  font-size: inherit !important;
+  font-family: $font-family-sans-serif !important;
+  color: $default !important;
+}
+
+.ql-tooltip-editor input[type='text'] {
+  color: $white !important;
+}
+
+.ql-editor,
+.ql-editor:focus {
+  padding: 0 !important;
+
+  &:before {
+    // placeholder
+    color: $secondary !important;
+    left: 0 !important;
+    line-height: 1.7 !important;
+  }
+}
+
+.ql-editor {
+  ul,
+  ol {
+    padding-left: 0 !important;
+  }
+
+  a {
+    color: $default !important;
+    font-weight: $font-weight-bold !important;
+    text-decoration: underline !important;
+  }
+
+  // Typography: as per document "Font sizes for design & development"
+  h1 {
+    font-size: $h1-font-size !important;
+  }
+  h2 {
+    @extend .text-xl;
+  }
+  h3 {
+    @extend .text-lg;
+  }
+  h4 {
+    font-size: $font-size-base !important;
+  }
+  h5 {
+    @extend .text-sm;
+  }
+  h6 {
+    @extend .text-xs;
+  }
+}
+
+.quill.text-xs .ql-editor * {
+  @extend .text-xs;
+}
+.quill.text-sm .ql-editor * {
+  @extend .text-sm;
+}
+.quill.text-lg .ql-editor * {
+  @extend .text-lg;
+}
+.quill.text-xl .ql-editor * {
+  @extend .text-xl;
+}

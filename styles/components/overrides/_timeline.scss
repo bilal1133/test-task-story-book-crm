@@ -1,0 +1,13 @@
+.timeline-one-side {
+  .timeline-content {
+    max-width: unset;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .timeline {
+    &:before {
+      margin-left: -($timeline-axis-width / 2);
+    }
+  }
+}

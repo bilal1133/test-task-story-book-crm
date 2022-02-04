@@ -1,0 +1,28 @@
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+.modal *:not(input):not(textarea) {
+  // APP-LIKE BEHAVIOUR: no selection whatsoever
+  @extend .no-select;
+}
+
+// BEWARE: the class 'prevent-clickout-close' must be MANUALLY applied to all modals (via 'modalClassName' property) when 'backdrop' equals to 'static' to hide the custom cursor, because indeed you cannot clickout to close it.
+.modal:not(.prevent-clickout-close) {
+  // shows a custom cursor: dark cross
+  cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVBAMAAABbObilAAAAMFBMVEVMaXH////////////////////////////////////////////////////////////6w4mEAAAAD3RSTlMAlAX+BKLcA5+b6hJ7foD4ZP1OAAAAkUlEQVR4XkWPoQ3CUBQAL4SktoKAbCUjgAKLJZ2ABYosngTJCHSD6joUI6BZgqSoB/+Shqde7sS9x3OGk81fdO+texMtRVTia+TsQtHEUJLdohJfgNNPJHyEJPZTsWLoxShqsWITazEwqePAn69Sw2TUxk1+euPis3EwaXy8RMHSZBIlRcKKnC5hRctjMf57/wJbBlAIs9k1BAAAAABJRU5ErkJggg==),
+    default !important;
+
+  .modal-content {
+    // shows the default cursor
+    cursor: default !important;
+  }
+}
+.modal-backdrop.show {
+  opacity: 0.7 !important;
+}

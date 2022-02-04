@@ -1,0 +1,315 @@
+// export const InputList = (): JSX.Element => {
+//   return <>
+
+//     <p>InputList</p>
+
+//   </>;
+// };
+
+import {
+  DragOverlay, InputCheckbox, InputRadio, LoEmojiPicker
+} from '@lolab/components';
+import { ColoursHex } from '@app/types';
+import { IEmojiPickerProps } from 'emoji-picker-react';
+import {
+  ChangeEvent,
+  CSSProperties,
+  KeyboardEvent, useState
+} from 'react';
+import { Input } from 'reactstrap';
+import { InputListItem } from './InputListItem';
+
+interface InputListProps {
+  type: 'LIST' | 'CHECKBOX' | 'RADIO';
+  options: Array<string>;
+  emojisForListItems: Array<string>;
+  selectedItems: Array<string>;
+
+  enabled?: boolean;
+  isHovered?: boolean;
+  isSelected?: boolean;
+}
+
+const defaultProps: InputListProps  = {
+  type: 'LIST',
+  options: [
+    ''
+  ],
+  emojisForListItems: [
+    `✅`
+  ],
+  selectedItems: []
+};
+
+const inputListItemStyle: CSSProperties = {
+  borderBottom: `1px solid ${ColoursHex.$default}`,
+  borderRadius: 0
+};
+
+const emojiPickerStyle: IEmojiPickerProps['pickerStyle'] = {
+  position: 'absolute',
+  backgroundColor: ColoursHex.$white,
+  zIndex: '1'
+};
+
+export const InputList = ({
+  enabled,
+  isHovered,
+  isSelected,
+
+  type = 'LIST'
+  // emojisForListItems = [
+  //   `✅`
+  // ],
+  // options = [
+  //   ''
+  // ],
+  // selectedItems = []
+}: InputListProps): JSX.Element => {
+
+  const [
+    state,
+    setState
+  ] = useState<InputListProps>(defaultProps);
+
+  const onChangeChecked = (type: InputListProps['type'], checked: boolean, item: string) => {
+    if (enabled) return;
+    // const selectedItems = state.selectedItems; // TODO: ? delete me ?
+    // if (!selectedItems) return;
+    if (type === 'CHECKBOX') {
+      setState(prevState => {
+        const newState: InputListProps = {
+          ...prevState,
+          selectedItems: checked
+            // append item
+            // ? [
+            //   ...selectedItems,
+            //   item
+            // ]
+            // append item (remove duplicates)
+            // this plays well with 'checked' because we use 'includes'
+            ? [
+              ...new Set([
+                ...prevState.selectedItems,
+                item
+              ])
+            ]
+            // remove item
+            : prevState.selectedItems.filter(_item => _item !== item)
+        };
+        return newState;
+      });
+    }
+    if (type === 'RADIO') {
+      setState(prevState => {
+        const newState: InputListProps = {
+          ...prevState,
+          selectedItems: checked
+            // one item
+            ? [
+              item
+            ]
+            // no items
+            : []
+        };
+        return newState;
+      });
+    }
+  };
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+    setState(prevState => {
+      const newState: InputListProps = {
+        ...prevState,
+        options: prevState.options.map((option, optionIndex) => optionIndex === index
+          ? e.target.value
+          : option)
+      };
+      return newState;
+    });
+  };
+
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement> & { target: HTMLInputElement; }, index: number) => {
+    if (e.key === 'Enter') {
+      // insert a new item after this one
+      setProp(props => {
+        const options = (props as InputListProps).options ?? [];
+        options.splice(index + 1, 0, '');
+        if (type === 'LIST') {
+          const emojisForListItems = (props as InputListProps).emojisForListItems ?? [];
+          emojisForListItems.splice(index + 1, 0, emojisForListItems[index]);
+        }
+      });
+      // blur current field
+      e.target.blur();
+      // focus next field (which will have the next index)
+      focusInputTextFieldForIndex(e.target, index + 1);
+    }
+    if (e.key === 'Backspace') {
+      const newVal = e.target.value;
+      if (newVal.length === 0 && (!!options && options.length > 1)) {
+        // remove this item
+        setProp(props => {
+          const options = (props as InputListProps).options ?? [];
+          options.splice(index, 1);
+          if (type === 'LIST') {
+            const emojisForListItems = (props as InputListProps).emojisForListItems ?? [];
+            emojisForListItems.splice(index, 1);
+          }
+        });
+        // focus previous field (which will have the previous index);
+        focusInputTextFieldForIndex(e.target, index - 1);
+      }
+    }
+  };
+
+  const onSelectEmojiForIindex = (emoji: string, index: number) => setProp(props => {
+    if (type === 'LIST') {
+      const emojisForListItems = (props as InputListProps).emojisForListItems ?? [];
+      emojisForListItems[index] = emoji;
+    }
+  });
+
+  const [
+    emojiIndex,
+    setEmojiIndex
+  ] = useState<number>(0);
+  const [
+    showEmoji,
+    setShowEmoji
+  ] = useState<boolean>(false);
+
+  return <div
+    data-identifier="InputList"
+    // ^^^^ really important to focus fields (for now) [see fn focusNextInputTextField]
+    ref={ref => connect(drag(ref))}
+  >
+
+    {type === 'LIST' && <>
+      {!isSelected && !!options?.filter(Boolean).length && options?.map((item, index) => (
+        <InputListItem
+          key={index}
+          className={index === (options.length - 1) ? undefined : 'mb-3'}
+          labelSize="sm"
+          emoji={emojisForListItems?.length ? emojisForListItems[index] : `✅`}
+        >{item}</InputListItem>
+      ))}
+      {enabled && (isSelected || (!isSelected && !options?.filter(Boolean).length)) && options?.map((item, index) => (
+        <InputListItem
+          key={index}
+          className={index === (options.length - 1) ? undefined : 'mb-2'}
+          labelSize="sm"
+          emoji={emojisForListItems?.length ? emojisForListItems[index] : `✅`}
+          onSymbolClick={() => setShowEmoji(true)}
+        >
+          <Input
+            className="form-control-flush form-control-sm"
+            style={inputListItemStyle}
+            placeholder="Enter text"
+            value={item}
+            onChange={(e) => onChange(e, index)}
+            onKeyDown={(e: KeyboardEvent<HTMLInputElement> & { target: HTMLInputElement; }) => onKeyDown(e, index)}
+            onFocus={() => setEmojiIndex(index)}
+          />
+          {isSelected && index === emojiIndex && showEmoji && <LoEmojiPicker
+            disableAutoFocus={true}
+            onEmojiClick={(_, { emoji }) => {
+              onSelectEmojiForIindex(emoji, index);
+              setShowEmoji(false);
+            }}
+            pickerStyle={emojiPickerStyle}
+          />}
+        </InputListItem>
+      ))}
+    </>}
+
+    {type === 'CHECKBOX' && <>
+      {!isSelected && !!options?.filter(Boolean).length && options?.map((item, index) => (
+        <InputCheckbox
+          key={index}
+          className={index === (options.length - 1) ? undefined : 'mb-3'}
+          labelSize="sm"
+          checked={selectedItems?.includes(item) ?? false}
+          onChange={checked => onChangeChecked(type, checked, item)}
+        >{item}</InputCheckbox>
+      ))}
+      {enabled && (isSelected || (!isSelected && !options?.filter(Boolean).length)) && options?.map((item, index) => (
+        <InputCheckbox
+          key={index}
+          className={index === (options.length - 1) ? undefined : 'mb-2'}
+          labelSize="sm"
+          checked={false}
+        >
+          <Input
+            className="form-control-flush form-control-sm"
+            style={inputListItemStyle}
+            placeholder="Enter text"
+            value={item}
+            onChange={(e) => onChange(e, index)}
+            onKeyDown={(e: KeyboardEvent<HTMLInputElement> & { target: HTMLInputElement; }) => onKeyDown(e, index)}
+          />
+        </InputCheckbox>
+      ))}
+    </>}
+
+    {type === 'RADIO' && <>
+      {!isSelected && !!options?.filter(Boolean).length && options?.map((item, index) => (
+        <InputRadio
+          key={index}
+          className={index === (options.length - 1) ? undefined : 'mb-3'}
+          labelSize="sm"
+          checked={selectedItems?.includes(item) ?? false}
+          onChange={checked => onChangeChecked(type, checked, item)}
+        >{item}</InputRadio>
+      ))}
+      {enabled && (isSelected || (!isSelected && !options?.filter(Boolean).length)) && options?.map((item, index) => (
+        <InputRadio
+          key={index}
+          className={index === (options.length - 1) ? undefined : 'mb-2'}
+          labelSize="sm"
+          checked={false}
+        >
+          <Input
+            className="form-control-flush form-control-sm"
+            style={inputListItemStyle}
+            placeholder="Enter text"
+            value={item}
+            onChange={(e) => onChange(e, index)}
+            onKeyDown={(e: KeyboardEvent<HTMLInputElement> & { target: HTMLInputElement; }) => onKeyDown(e, index)}
+          />
+        </InputRadio>
+      ))}
+    </>}
+
+  </div>;
+};
+
+// FIXME: BEGIN
+// focus input text field (It just works. At least until we release.) // FIXME: do this operation "the react way"
+const focusInputTextFieldForIndex = (inputTextField: HTMLInputElement, index: number, delayInMilliseconds = 5) => setTimeout(
+  () => {
+    const thisComponent = inputTextField.closest('[data-identifier="InputList"]'); // BEWARE: keep in sync with DOM attribute
+    if (!thisComponent) return;
+
+    const inputs = [
+      ...thisComponent.querySelectorAll('input[type="text"]')
+    ] as Array<HTMLInputElement>;
+
+    if (!inputs) return;
+    const inputToFocus = inputs[index < 0 ? 0 : index] as HTMLInputElement | undefined;
+
+    if (inputToFocus) {
+      inputToFocus.focus();
+      return;
+
+    } else {
+      const newDelayInMilliseconds = delayInMilliseconds * 2;
+      if (newDelayInMilliseconds > 500) return;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      focusInputTextFieldForIndex(inputTextField, index, newDelayInMilliseconds);
+    }
+
+  },
+  delayInMilliseconds
+);
+// FIXME: END

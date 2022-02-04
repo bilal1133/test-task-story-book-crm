@@ -1,0 +1,49 @@
+.select__control {
+  @extend .form-control;
+  border: 1px solid #afafaf !important;
+
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+
+  &:focus,
+  &--is-focused {
+    // all styles in here have been copied from 'input[type="text"].form-control // TODO: use Argon's scss
+    outline: 0 !important;
+    border-color: #636363 !important;
+    box-shadow: 0 3px 9px rgb(50 50 9 / 0%), 3px 4px 8px rgb(99 99 99 / 10%) !important;
+  }
+}
+
+.select__value-container {
+  padding: 0 !important;
+}
+
+.select__menu {
+  z-index: 1025 !important; // just 5 more than .sticky-top (e.g. editorial calendar headers are '1021'Ø)
+}
+
+.select__menu {
+  @extend .text-sm;
+}
+
+.select__option {
+  @extend .p-3;
+  text-align: left !important;
+  font-weight: $font-weight-normal !important;
+  &:not(:last-child) {
+    @extend .border-bottom;
+  }
+}
+
+.select__option--is-selected {
+  background-color: $white !important;
+  color: $default !important;
+  font-weight: $font-weight-bold !important;
+}
+
+.select__option--is-focused {
+  background-color: $white !important;
+  color: $default !important;
+  font-weight: $font-weight-bold !important;
+}

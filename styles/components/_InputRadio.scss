@@ -1,0 +1,8 @@
+.custom-toggle-slider {
+  &.no-bounce {
+    &:after,
+    &:before {
+      transition: unset;
+    }
+  }
+}

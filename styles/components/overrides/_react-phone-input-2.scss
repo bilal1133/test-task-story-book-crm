@@ -1,0 +1,21 @@
+// REACT-PHONE-INPUT-2
+
+.react-tel-input {
+  font-family: $font-family-sans-serif;
+
+  .form-control {
+    padding-left: 48px !important;
+
+    &.form-control-sm {
+      @extend .form-control-sm;
+    }
+
+    &.form-control {
+      @extend .form-control;
+    }
+
+    &.form-control-lg {
+      @extend .form-control-lg;
+    }
+  }
+}

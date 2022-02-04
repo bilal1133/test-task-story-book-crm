@@ -1,0 +1,5 @@
+.dropdown-item {
+  @include hover-focus() {
+    font-weight: $font-weight-bold;
+  }
+}

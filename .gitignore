@@ -1,0 +1,32 @@
+### .gitignore
+
+# macOS
+.DS_STORE
+
+# IDE
+.idea
+
+# Storybook
+.out
+
+# Next.js build output
+.next
+out
+
+# dotenv environment variables file (build for Zeit Now)
+# .env
+# .env.*
+
+# Dependency directories
+**/node_modules
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Hosting
+.vercel
+
+# Database backups
+db-backups

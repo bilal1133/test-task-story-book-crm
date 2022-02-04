@@ -1,0 +1,11 @@
+.lolab__comment-area {
+  // height: 100%; // usually added as .h-100 via HTML
+  position: relative;
+  max-height: 50vh;
+  overflow: auto;
+  // force the container to stay scrolled to the bottom https://codepen.io/jimbol/pen/YVJzBg
+  display: flex;
+  flex-direction: column-reverse;
+  // align-items: center;
+  // justify-content: center;
+}

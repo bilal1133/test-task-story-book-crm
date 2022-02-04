@@ -1,0 +1,30 @@
+@import '../../setup/setup';
+
+// DATEPICKER (react-datetime)
+
+.rdtPicker {
+  .rdtYear,
+  .rdtMonth,
+  .rdtDay {
+    &.rdtToday {
+      font-weight: bold;
+    }
+
+    &.rdtActive,
+    &.start-date,
+    &.end-date,
+    &.middle-date,
+    &.rdtActive:hover,
+    &.start-date:hover,
+    &.end-date:hover {
+      background-color: $default !important;
+      color: $white !important;
+    }
+
+    &.middle-date:hover {
+      background-color: $white !important;
+      color: $default !important;
+      font-weight: $font-weight-bold !important;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.legal-page {
+  a,
+  a:active,
+  a:visited {
+    text-decoration: underline;
+    color: $blue;
+    font-weight: $font-weight-bold;
+  }
+}

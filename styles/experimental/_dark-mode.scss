@@ -1,0 +1,7 @@
+// TODO: create proper color scheme for dark mode, then swap all vars, plus add UI toggle to switch
+html.dark-mode {
+  body {
+    background-color: $default;
+    color: #fff;
+  }
+}

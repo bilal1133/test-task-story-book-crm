@@ -1,0 +1,34 @@
+# Argon & Vendors
+**/*.min.js
+**/_DO_NOT_EDIT_Argon_theme_assets
+public/*
+
+### FROM HERE SAME AS .gitignore
+
+# macOS
+.DS_STORE
+
+# IDE
+.idea
+
+# Storybook
+.out
+
+# Next.js build output
+.next
+out
+
+# dotenv environment variables file (build for Zeit Now)
+.env
+.env.build
+
+# Dependency directories
+**/node_modules
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Hosting
+.vercel
