@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import Repeater from './index';
 import {
-  Row, Col, Input, Button, FormGroup
+  Col, Input, Button
 } from 'reactstrap';
 import { LoButton } from '@lolab/components';
 
 const SocialMediaRepeatedForm = () => {
+
   const [
     count,
     setCount

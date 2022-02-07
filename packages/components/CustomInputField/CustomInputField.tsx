@@ -1,5 +1,9 @@
-import { Controller, FieldValues, Control } from 'react-hook-form';
-import { Input, FormGroup, InputProps } from 'reactstrap';
+import {
+  Controller, FieldValues, Control
+} from 'react-hook-form';
+import {
+  Input, FormGroup, InputProps
+} from 'reactstrap';
 
 type CustomFieldProps = {
   control: Control<FieldValues, object>;
@@ -13,13 +17,17 @@ type CustomFieldProps = {
   className?: string;
 };
 
-export const CustomInputField: React.FC<CustomFieldProps> = ({ control, fieldName, error, defaultValue = '', placeholder = '', type, disabled = false }) => (
+export const CustomInputField: React.FC<CustomFieldProps> = ({
+  control, fieldName, error, defaultValue = '', placeholder = '', type, disabled = false
+}) => (
   <FormGroup>
     <Controller
       name={fieldName}
       control={control}
       defaultValue={defaultValue}
-      render={({ field: { ref, onChange, ...field } }) => (
+      render={({ field: {
+        ref, onChange, ...field
+      } }) => (
         <>
           <Input
             disabled={disabled}
@@ -35,7 +43,10 @@ export const CustomInputField: React.FC<CustomFieldProps> = ({ control, fieldNam
       )}
     />
     {error && (
-      <span className="text-danger text-xs mt-1" role="alert">
+      <span
+        className="text-danger text-xs mt-1"
+        role="alert"
+      >
         {error.message}
       </span>
     )}

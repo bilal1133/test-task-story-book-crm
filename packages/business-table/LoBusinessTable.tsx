@@ -82,7 +82,6 @@ export const LoCrm = ({}: LoCrmProps): JSX.Element => {
   ];
 
   const toggleVisible = () => {
-   
     setCreateNewModalopen(!createNewModalopen);
   };
   return (
